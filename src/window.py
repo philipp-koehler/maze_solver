@@ -1,7 +1,6 @@
 from tkinter import Tk, BOTH, Canvas
 from line import Line
 from maze import Maze
-from maze import Maze
 
 class Window:
 

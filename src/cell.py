@@ -21,10 +21,11 @@ class Cell:
     def __repr__(self):
         v = lambda x: "|" if x else " "
         h = lambda x: "--------------" if x else ""
-        return f"         {h(self.has_top_wall)}\n" + \
-               f"cell ->{v(self.has_left_wall)}[{self.point_tl}, {self.point_tr}]{v(self.has_right_wall)}\n" + \
-               f"       {v(self.has_left_wall)}[{self.point_bl}, {self.point_br}]{v(self.has_right_wall)}\n" + \
-               f"         {h(self.has_bottom_wall)}"
+        return f"|{self.point_tl}, {self.point_br}|"
+        # return f"         {h(self.has_top_wall)}\n" + \
+        #        f"cell ->{v(self.has_left_wall)}[{self.point_tl}, {self.point_tr}]{v(self.has_right_wall)}\n" + \
+        #        f"       {v(self.has_left_wall)}[{self.point_bl}, {self.point_br}]{v(self.has_right_wall)}\n" + \
+        #        f"         {h(self.has_bottom_wall)}"
     
     def draw(self, fill_color):
         if self.has_left_wall:
@@ -40,7 +41,6 @@ class Cell:
         center_x = (self.point_tl.x - self.point_br.x) // 2
         center_y = (self.point_tl.y - self.point_br.y) // 2
         center_point = self.point_br + Point(center_x, center_y)
-        print(center_x)
         return center_point
     
     def draw_path(self, to_cell, undo=False):
