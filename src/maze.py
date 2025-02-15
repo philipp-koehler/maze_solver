@@ -29,7 +29,7 @@ class Maze:
                 self.draw_cells(cell)
             cells.append(cols)
             print(cells)
-        qqqreturn cells
+        return cells
 
     def draw_cells(self, cell):
         cell.draw("black")
