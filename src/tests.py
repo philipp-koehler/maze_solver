@@ -2,6 +2,7 @@ import unittest
 from point import Point
 from maze import Maze
 
+
 class Tests(unittest.TestCase):
     def test_maze_create_cells(self):
         num_cols = 2
@@ -15,6 +16,7 @@ class Tests(unittest.TestCase):
             len(m1.cells[0]),
             num_rows,
         )
+
 
 if __name__ == "__main__":
     unittest.main()

@@ -3,9 +3,12 @@ from line import Line
 from cell import Cell
 import time
 
+
 class Maze:
 
-    def __init__(self, start, num_rows, num_cols, cell_size_x, cell_size_y, win = None):
+    def __init__(
+        self, start, num_rows, num_cols, cell_size_x, cell_size_y, win=None
+    ):
         self.start = start
         self.num_rows = num_rows
         self.num_cols = num_cols
@@ -21,9 +24,15 @@ class Maze:
         for i in range(0, self.num_cols):
             cols = []
             for j in range(0, self.num_rows):
-                cell = Cell(False, False, False, False,
-                            self.start + down * i + left * j,
-                            self.start + down * (i+1) + left * (j+1), self.win)
+                cell = Cell(
+                    False,
+                    False,
+                    False,
+                    False,
+                    self.start + down * i + left * j,
+                    self.start + down * (i + 1) + left * (j + 1),
+                    self.win,
+                )
                 cols.append(cell)
                 print(cols)
                 self.draw_cells(cell)
@@ -38,4 +47,3 @@ class Maze:
         if self.win is not None:
             self.win.redraw()
             time.sleep(0.05)
-        

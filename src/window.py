@@ -2,6 +2,7 @@ from tkinter import Tk, BOTH, Canvas
 from line import Line
 from maze import Maze
 
+
 class Window:
 
     def __init__(self, width, height):
@@ -24,7 +25,7 @@ class Window:
             self.redraw()
 
     def close(self) -> None:
-        self.running = False 
+        self.running = False
 
     def draw_line(self, line: Line, fill_color: str) -> None:
         line.draw(self.canvas, fill_color)
