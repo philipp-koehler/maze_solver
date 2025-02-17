@@ -1,49 +1,53 @@
-from point import Point
-from line import Line
 from cell import Cell
+import random
 import time
 
 
 class Maze:
 
     def __init__(
-        self, start, num_rows, num_cols, cell_size_x, cell_size_y, win=None
+        self,
+        x1,
+        y1,
+        num_rows,
+        num_cols,
+        cell_size_x,
+        cell_size_y,
+        win=None,
     ):
-        self.start = start
-        self.num_rows = num_rows
-        self.num_cols = num_cols
-        self.cell_size_x = cell_size_x
-        self.cell_size_y = cell_size_y
-        self.win = win
-        self.cells = self.create_cells()
+        self._cells = []
+        self._x1 = x1
+        self._y1 = y1
+        self._num_rows = num_rows
+        self._num_cols = num_cols
+        self._cell_size_x = cell_size_x
+        self._cell_size_y = cell_size_y
+        self._win = win
 
-    def create_cells(self):
-        cells = []
-        left = Point(self.cell_size_x, 0)
-        down = Point(0, self.cell_size_y)
-        for i in range(0, self.num_cols):
-            cols = []
-            for j in range(0, self.num_rows):
-                cell = Cell(
-                    False,
-                    False,
-                    False,
-                    False,
-                    self.start + down * i + left * j,
-                    self.start + down * (i + 1) + left * (j + 1),
-                    self.win,
-                )
-                cols.append(cell)
-                print(cols)
-                self.draw_cells(cell)
-            cells.append(cols)
-            print(cells)
-        return cells
+        self._create_cells()
 
-    def draw_cells(self, cell):
-        cell.draw("black")
+    def _create_cells(self):
+        for i in range(self._num_cols):
+            col_cells = []
+            for j in range(self._num_rows):
+                col_cells.append(Cell(self._win))
+            self._cells.append(col_cells)
+        for i in range(self._num_cols):
+            for j in range(self._num_rows):
+                self._draw_cell(i, j)
 
-    def animate(self):
-        if self.win is not None:
-            self.win.redraw()
-            time.sleep(0.05)
+    def _draw_cell(self, i, j):
+        if self._win is None:
+            return
+        x1 = self._x1 + i * self._cell_size_x
+        y1 = self._y1 + j * self._cell_size_y
+        x2 = x1 + self._cell_size_x
+        y2 = y1 + self._cell_size_y
+        self._cells[i][j].draw(x1, y1, x2, y2)
+        self._animate()
+
+    def _animate(self):
+        if self._win is None:
+            return
+        self._win.redraw()
+        time.sleep(0.05)
